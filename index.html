@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Exchange Social — the modern app for couples & the curious</title>
-<meta name="description" content="Exchange Social is a verified, discreet social app for couples and the lifestyle-curious. Join the waitlist for early access." />
+<title>Exchange | The social app for couples, singles and the lifestyle</title>
+<meta name="description" content="Exchange is a verified, discreet social app for couples, singles and throuples in the lifestyle. Browse nearby, plan trips with Roam, and find events. Join the waitlist." />
 <meta name="robots" content="index, follow" />
 <!-- Open Graph -->
-<meta property="og:title" content="Exchange Social" />
+<meta property="og:title" content="Exchange" />
 <meta property="og:description" content="A verified, discreet social app for couples and the curious. Join the waitlist." />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="canonical" href="https://exchangesocialapp.com/" />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -108,6 +109,14 @@
   .foot a:hover{color:var(--text)}
   .foot .fine{color:var(--muted);font-size:13px}
 
+  .topnav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .topnav a{color:var(--muted);text-decoration:none;font-size:15px}
+  .topnav a:hover{color:var(--text)}
+  .bar{flex-wrap:wrap;gap:12px}
+  .explore{padding:40px 0 0}
+  .xh{font-family:'Outfit';font-weight:700;font-size:clamp(22px,3.4vw,30px);margin-bottom:18px}
+  a.xcard{text-decoration:none;color:inherit;display:block;transition:border-color .15s}
+  a.xcard:hover{border-color:var(--blue)}
   @media (max-width:720px){
     .trust-grid{grid-template-columns:1fr}
     .hero{padding:48px 0 30px}
@@ -122,9 +131,12 @@
     <div class="wrap bar">
       <div class="brand">
         <span class="rings" aria-hidden="true"><i></i><i></i></span>
-        Exchange&nbsp;Social
+        Exchange
       </div>
-      <span class="age-pill">18+ only</span>
+      <nav class="topnav">
+        <a href="/features.html">Features</a><a href="/safety.html">Safety</a><a href="/blog/">Guides</a><a href="/support.html">Support</a>
+        <span class="age-pill">18+ only</span>
+      </nav>
     </div>
   </header>
 
@@ -132,7 +144,7 @@
     <div class="wrap">
       <div class="rings mark" aria-hidden="true"><i></i><i></i></div>
       <h1>Made for couples and the <span class="soft">curious.</span></h1>
-      <p class="lede">A modern, verified, discreet way to meet like-minded people near you and wherever you travel. Built by the lifestyle, for the lifestyle — not a faceless app.</p>
+      <p class="lede">A modern, verified, discreet way to meet like-minded people near you and wherever you travel. Built by the lifestyle, for the lifestyle.</p>
 
       <div class="waitlist">
         <form id="wl" novalidate>
@@ -142,7 +154,7 @@
           </div>
           <div class="consent">
             <input type="checkbox" id="age" required />
-            <label for="age">I confirm I am 18 years or older and want early-access updates about Exchange Social.</label>
+            <label for="age">I confirm I am 18 years or older and want early-access updates about Exchange.</label>
           </div>
           <p class="formnote" id="note" role="status" aria-live="polite"></p>
         </form>
@@ -172,8 +184,19 @@
   <section class="pitch">
     <div class="wrap">
       <h2>The lifestyle deserves a better app.</h2>
-      <p>The old sites feel like they're stuck in 2003. The mainstream apps were never built for couples. Exchange Social is a fresh start — modern, mobile-first, and made specifically for open-minded couples and singles who value discretion and real connection.</p>
+      <p>The old sites feel like they're stuck in 2003. The mainstream apps were never built for couples. Exchange is a fresh start: modern, mobile-first, and made specifically for open-minded couples and singles who value discretion and real connection.</p>
       <p>We're opening access soon. Join the waitlist and you'll be among the first in when we launch.</p>
+    </div>
+  </section>
+
+  <section class="explore">
+    <div class="wrap">
+      <h2 class="xh">Explore Exchange</h2>
+      <div class="trust-grid">
+        <a class="card xcard" href="/features.html"><div class="k"><span class="dot" style="background:var(--magenta)"></span>Features</div><p>Browse nearby, couples profiles, Roam for travel, Right Now, private albums and events.</p></a>
+        <a class="card xcard" href="/safety.html"><div class="k"><span class="dot" style="background:var(--cyan)"></span>Safety &amp; age standards</div><p>Adults only. How we moderate, what's allowed where, and how to stay safe when you meet.</p></a>
+        <a class="card xcard" href="/blog/"><div class="k"><span class="dot" style="background:var(--gold)"></span>Guides</div><p>Getting started as a couple, traveling in the lifestyle, and first meetup etiquette.</p></a>
+      </div>
     </div>
   </section>
 
@@ -181,16 +204,21 @@
     <div class="wrap foot">
       <div class="brand" style="font-size:16px">
         <span class="rings" aria-hidden="true" style="width:34px;height:24px"><i style="width:24px;height:24px;border-width:3px"></i><i style="width:24px;height:24px;border-width:3px"></i></span>
-        Exchange&nbsp;Social
+        Exchange
       </div>
       <div class="links">
+        <a href="/features.html">Features</a>
+        <a href="/safety.html">Safety</a>
+        <a href="/blog/">Guides</a>
+        <a href="/support.html">Support</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
+        <a href="/law-enforcement.html">Law enforcement</a>
         <a href="mailto:hello@exchangesocialapp.com">Contact</a>
       </div>
     </div>
     <div class="wrap" style="margin-top:18px">
-      <p class="fine">© <span id="yr"></span> Exchange Social. For adults 18 and older. All rights reserved.</p>
+      <p class="fine">© <span id="yr"></span> Exchange Social App, LLC. For adults 18 and older. All rights reserved.</p>
     </div>
   </footer>
 </main>
@@ -227,7 +255,7 @@
       note.classList.add('ok');
       form.reset();
     } catch (err) {
-      note.textContent = 'Something went wrong — please try again.';
+      note.textContent = 'Something went wrong. Please try again.';
       note.classList.add('err');
     } finally {
       btn.disabled = false;
