@@ -54,3 +54,8 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:36px 0 60px;posi
 ol.steps{padding-left:22px;margin:10px 0 18px}
 ol.steps li{margin:8px 0;line-height:1.6}
 article b{color:#fff}
+/* clickable cards: blue edge plus an arrow so they read as links, even on phones */
+a.card{position:relative;border-color:rgba(59,123,255,.45);padding-right:56px}
+a.card::after{content:"→";position:absolute;top:22px;right:20px;width:28px;height:28px;border-radius:50%;background:rgba(59,123,255,.18);color:var(--blue);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center}
+a.card.back::after{content:"←"}
+a.card:hover,a.card:active{border-color:var(--blue);background:#18214D}
