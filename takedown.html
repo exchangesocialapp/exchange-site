@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Remove an intimate image | Exchange</title>
+<meta name="description" content="Request removal of an intimate image of you shared on Exchange without your consent. Handled within 48 hours under the TAKE IT DOWN Act." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://exchangesocialapp.com/takedown.html" />
+<meta property="og:title" content="Remove an intimate image | Exchange" />
+<meta property="og:description" content="Request removal of an intimate image of you shared on Exchange without your consent. Handled within 48 hours under the TAKE IT DOWN Act." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/site.css" />
+<style>.tdform{display:grid;gap:16px}.tdform label{display:grid;gap:6px;font-size:15px}.tdform input:not([type=radio]):not([type=checkbox]),.tdform textarea{background:#0A0C22;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;font:inherit}.tdform label.inline{display:flex;gap:10px;align-items:flex-start}.tdform fieldset{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px}.tdform legend{color:var(--muted);padding:0 6px}.tdform .cta{justify-self:start;border:0;cursor:pointer}</style></head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+<main>
+<header><div class="wrap bar">
+  <a class="brand" href="/"><span class="rings" aria-hidden="true"><i></i><i></i></span>Exchange</a>
+  <nav><a href="/features.html">Features</a><a href="/safety.html">Safety</a><a href="/blog/">Guides</a><a href="/help/">Help</a><a href="/support.html">Support</a><span class="age-pill">18+</span></nav>
+</div></header>
+
+<section class="page-hero"><div class="wrap narrow">
+  <p class="eyebrow">Safety</p>
+  <h1>Remove an intimate image</h1>
+  <p class="lede">If an intimate photo or video of you was shared on Exchange without your consent, including AI-generated or altered images, tell us here. You don't need an account, and you don't need to know who posted it.</p>
+</div></section>
+<section><div class="wrap narrow">
+  <div class="card" style="margin-bottom:22px"><h3>What happens next</h3><p>We remove content covered by a valid request within 48 hours, along with copies we can find, and we act on the account that posted it. We'll email you when it's done or if we need more detail. We never ask you to send the image itself.</p></div>
+  <form id="tdForm" class="tdform" novalidate>
+    <label>Your full name<input id="tdName" maxlength="200" required></label>
+    <label>Your email<input id="tdEmail" type="email" maxlength="320" required></label>
+    <fieldset><legend>You are</legend>
+      <label class="inline"><input type="radio" name="tdRole" value="depicted" checked> The person shown in the image</label>
+      <label class="inline"><input type="radio" name="tdRole" value="representative"> Authorized to act for the person shown</label>
+    </fieldset>
+    <label>Profile name where it appears (if you know it)<input id="tdProfile" maxlength="200"></label>
+    <label>Where is the content? Describe it so we can find it: the profile, whether it's a profile photo, in a chat or album, the city shown, and anything else that helps.<textarea id="tdDetails" rows="6" maxlength="4000" required></textarea></label>
+    <label class="inline"><input type="checkbox" id="tdStatement"> I have a good-faith belief that this intimate image was published without the consent of the person shown, and the information in this request is accurate.</label>
+    <label>Signature: type your full name<input id="tdSig" maxlength="200" required></label>
+    <button class="cta" type="submit" id="tdBtn">Send removal request</button>
+    <p id="tdNote" class="muted" role="status"></p>
+  </form>
+  <p class="muted" style="margin-top:24px">You can also email <a href="mailto:legal@exchangesocialapp.com?subject=NCII%20%2F%20Take%20It%20Down">legal@exchangesocialapp.com</a> with the subject "NCII / Take It Down." If the image involves anyone under 18, email <a href="mailto:childsafety@exchangesocialapp.com">childsafety@exchangesocialapp.com</a> and report it to the <a href="https://report.cybertip.org/">NCMEC CyberTipline</a>. For support and prevention tools, see <a href="https://stopncii.org">StopNCII.org</a> and the <a href="https://cybercivilrights.org">Cyber Civil Rights Initiative</a>.</p>
+</div></section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  var sb = window.supabase.createClient('https://mgzgqppnypodcuyiwbkk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nemdxcHBueXBvZGN1eWl3YmtrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYxMzExODcsImV4cCI6MjEwMTcwNzE4N30.yoriC1jRrpF0LWzBda5sSBHWFJjw-OKi1kDScTadWIM');
+  var f = document.getElementById('tdForm'), note = document.getElementById('tdNote'), btn = document.getElementById('tdBtn');
+  f.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var email = v('tdEmail');
+    note.style.color = '#FF4FA2';
+    if (!v('tdName') || !v('tdDetails') || !v('tdSig')) { note.textContent = 'Please fill in your name, where the content is, and your signature.'; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Please enter a valid email so we can reply.'; return; }
+    if (!document.getElementById('tdStatement').checked) { note.textContent = 'Please confirm the statement to send the request.'; return; }
+    btn.disabled = true; note.style.color = ''; note.textContent = 'Sending...';
+    var res = await sb.from('ncii_requests').insert({
+      requester_name: v('tdName'), requester_email: email,
+      requester_role: document.querySelector('input[name=tdRole]:checked').value,
+      profile_name: v('tdProfile') || null, location_details: v('tdDetails'),
+      statement_confirmed: true, signature: v('tdSig')
+    });
+    if (res.error) { btn.disabled = false; note.style.color = '#FF4FA2'; note.textContent = 'That didn\'t go through. Please try again, or email legal@exchangesocialapp.com.'; return; }
+    f.reset(); btn.disabled = false; note.style.color = '#35E06A';
+    note.textContent = 'Request received. We act on valid requests within 48 hours and will email you.';
+  });
+</script>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="brand" href="/" style="font-size:16px"><span class="rings" aria-hidden="true" style="width:32px;height:22px"><i style="width:22px;height:22px;border-width:3px"></i><i style="width:22px;height:22px;border-width:3px"></i></span>Exchange</a>
+      <p class="fine" style="margin-top:10px">Exchange is operated by Exchange Social App, LLC, Raleigh, North Carolina.</p>
+    </div>
+    <div class="links">
+      <a href="/features.html">Features</a><a href="/safety.html">Safety</a><a href="/blog/">Guides</a><a href="/help/">Help</a><a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/law-enforcement.html">Law enforcement</a><a href="/copyright.html">Copyright</a><a href="/takedown.html">Remove an image</a>
+      <a href="mailto:hello@exchangesocialapp.com">Contact</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:18px"><p class="fine">&copy; 2026 Exchange Social App, LLC. For adults 18 and older. All rights reserved.</p></div>
+</footer>
+</main>
+</body>
+</html>
