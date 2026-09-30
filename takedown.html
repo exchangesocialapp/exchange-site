@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/site.css" />
-<style>.tdform{display:grid;gap:16px}.tdform label{display:grid;gap:6px;font-size:15px}.tdform input:not([type=radio]):not([type=checkbox]),.tdform textarea{background:#0A0C22;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;font:inherit}.tdform label.inline{display:flex;gap:10px;align-items:flex-start}.tdform fieldset{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px}.tdform legend{color:var(--muted);padding:0 6px}.tdform .cta{justify-self:start;border:0;cursor:pointer}</style></head>
+<style>.tdform{display:grid;gap:16px}.tdform label{display:grid;gap:6px;font-size:15px}.tdform input:not([type=radio]):not([type=checkbox]),.tdform textarea,.tdform select{background:#0A0C22;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;font:inherit}.tdform label.inline{display:flex;gap:10px;align-items:flex-start}.tdform fieldset{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px}.tdform legend{color:var(--muted);padding:0 6px}.tdform .cta{justify-self:start;border:0;cursor:pointer}</style></head>
 <body>
 <div class="glow" aria-hidden="true"></div>
 <main>
@@ -37,19 +37,27 @@
       <label class="inline"><input type="radio" name="tdRole" value="depicted" checked> The person shown in the image</label>
       <label class="inline"><input type="radio" name="tdRole" value="representative"> Authorized to act for the person shown</label>
     </fieldset>
-    <label>Profile name where it appears (if you know it)<input id="tdProfile" maxlength="200"></label>
-    <label>Where is the content? Describe it so we can find it: the profile, whether it's a profile photo, in a chat or album, the city shown, and anything else that helps.<textarea id="tdDetails" rows="6" maxlength="4000" required></textarea></label>
+    <label>Profile ID (best way for us to find the exact profile)<input id="tdCode" maxlength="20" placeholder="EX-7K3P9Q" autocapitalize="characters"></label>
+    <p class="muted" style="margin:-8px 0 0;font-size:14px">Open the profile in the app, scroll to the very bottom and tap the small blue <b>Profile ID</b> button. No account or can't get it? Fill in as much of the rest as you can.</p>
+    <label>Display name on the profile<input id="tdProfile" maxlength="200"></label>
+    <label>Profile type<select id="tdType"><option value="">Not sure</option><option>Couple</option><option>Throuple</option><option>Single woman</option><option>Single man</option></select></label>
+    <label>City or area shown<input id="tdCity" maxlength="120"></label>
+    <label>When did you see it?<input id="tdWhen" maxlength="120" placeholder="e.g. September 20, 2026"></label>
+    <label>Where was it?<select id="tdWhere"><option value="profile_photo">A profile photo</option><option value="album">A private album</option><option value="chat">Sent in a chat</option><option value="right_now">A Right Now post</option><option value="other">Somewhere else</option></select></label>
+    <label>Describe the content so we can find it: what the image shows (without sending it), and anything else that helps.<textarea id="tdDetails" rows="6" maxlength="4000" required></textarea></label>
     <label class="inline"><input type="checkbox" id="tdStatement"> I have a good-faith belief that this intimate image was published without the consent of the person shown, and the information in this request is accurate.</label>
     <label>Signature: type your full name<input id="tdSig" maxlength="200" required></label>
     <button class="cta" type="submit" id="tdBtn">Send removal request</button>
     <p id="tdNote" class="muted" role="status"></p>
   </form>
-  <p class="muted" style="margin-top:24px">You can also email <a href="mailto:legal@exchangesocialapp.com?subject=NCII%20%2F%20Take%20It%20Down">legal@exchangesocialapp.com</a> with the subject "NCII / Take It Down." If the image involves anyone under 18, email <a href="mailto:childsafety@exchangesocialapp.com">childsafety@exchangesocialapp.com</a> and report it to the <a href="https://report.cybertip.org/">NCMEC CyberTipline</a>. For support and prevention tools, see <a href="https://stopncii.org">StopNCII.org</a> and the <a href="https://cybercivilrights.org">Cyber Civil Rights Initiative</a>.</p>
+  <p class="muted" style="margin-top:24px">Have an Exchange account? Reporting inside the app is fastest: open the profile, tap the report button and choose the intimate image reason. It attaches the exact profile for us. You can also email <a href="mailto:legal@exchangesocialapp.com?subject=NCII%20%2F%20Take%20It%20Down">legal@exchangesocialapp.com</a> with the subject "NCII / Take It Down." If the image involves anyone under 18, email <a href="mailto:childsafety@exchangesocialapp.com">childsafety@exchangesocialapp.com</a> and report it to the <a href="https://report.cybertip.org/">NCMEC CyberTipline</a>. For support and prevention tools, see <a href="https://stopncii.org">StopNCII.org</a> and the <a href="https://cybercivilrights.org">Cyber Civil Rights Initiative</a>.</p>
 </div></section>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   var sb = window.supabase.createClient('https://mgzgqppnypodcuyiwbkk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nemdxcHBueXBvZGN1eWl3YmtrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYxMzExODcsImV4cCI6MjEwMTcwNzE4N30.yoriC1jRrpF0LWzBda5sSBHWFJjw-OKi1kDScTadWIM');
   var f = document.getElementById('tdForm'), note = document.getElementById('tdNote'), btn = document.getElementById('tdBtn');
+  // opened from a profile in the app: Profile ID arrives in the link (?code=EX-...)
+  try { var qc = new URLSearchParams(location.search).get('code'); if (qc && /^EX-[A-Z0-9]{6}$/i.test(qc)) document.getElementById('tdCode').value = qc.toUpperCase(); } catch (e) {}
   f.addEventListener('submit', async function (e) {
     e.preventDefault();
     var v = function (id) { return document.getElementById(id).value.trim(); };
@@ -63,6 +71,8 @@
       requester_name: v('tdName'), requester_email: email,
       requester_role: document.querySelector('input[name=tdRole]:checked').value,
       profile_name: v('tdProfile') || null, location_details: v('tdDetails'),
+      profile_code: (v('tdCode') || '').toUpperCase() || null, profile_type_hint: v('tdType') || null,
+      city_hint: v('tdCity') || null, seen_when: v('tdWhen') || null, content_location: v('tdWhere'),
       statement_confirmed: true, signature: v('tdSig')
     });
     if (res.error) { btn.disabled = false; note.style.color = '#FF4FA2'; note.textContent = 'That didn\'t go through. Please try again, or email legal@exchangesocialapp.com.'; return; }
