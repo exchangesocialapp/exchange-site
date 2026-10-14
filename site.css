@@ -14,6 +14,7 @@ header{padding:22px 0;border-bottom:1px solid rgba(35,46,92,.6)}
 .rings i{position:absolute;top:0;width:28px;height:28px;border-radius:50%;border:4px solid}
 .rings i:first-child{left:0;border-color:var(--magenta)}
 .rings i:last-child{right:0;border-color:var(--cyan)}
+.rings{background:url(/logo.svg) center/contain no-repeat}.rings i{display:none!important}
 nav{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 nav a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500}
 nav a:hover,nav a.on{color:var(--text)}
