@@ -1,0 +1,23 @@
+/* Shared site header: logo left, framed nav center, CTA right; collapses to a Menu on small screens */
+.sitehead{position:sticky;top:0;z-index:50;padding:12px 0;background:rgba(10,12,34,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(35,46,92,.7)}
+.sitehead .shbar{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1080px;margin:0 auto;padding:0 24px}
+.sitehead .brand{display:flex;align-items:center;gap:12px;font-family:'Outfit',system-ui,sans-serif;font-weight:800;font-size:20px;color:#EAEEFF;text-decoration:none}
+.sitehead .rings{width:40px;height:28px;flex:0 0 auto;background:url(/logo.svg) center/contain no-repeat}
+.sitehead .rings i{display:none!important}
+.sitehead .navtrack{display:flex;gap:2px;padding:4px;border:1px solid #232E5C;border-radius:999px;background:rgba(20,26,62,.65)}
+.sitehead .navtrack a{color:#8F9AD4;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:14.5px;font-weight:600;padding:8px 16px;border-radius:999px;transition:background .15s ease,color .15s ease}
+.sitehead .navtrack a:hover{color:#EAEEFF;background:rgba(255,255,255,.05)}
+.sitehead .navtrack a.on{color:#EAEEFF;background:#1E2652;box-shadow:inset 0 0 0 1px #2E3A72}
+.sitehead .shright{display:flex;align-items:center;gap:10px}
+.sitehead .age-pill{font-family:'Outfit',system-ui,sans-serif;font-weight:700;font-size:12px;color:#8F9AD4;border:1px solid #232E5C;border-radius:999px;padding:5px 11px}
+.sitehead .navcta{font-family:'Outfit',system-ui,sans-serif;font-weight:700;font-size:14px;color:#fff;text-decoration:none;padding:10px 18px;border-radius:999px;background:#FF2E93;white-space:nowrap;transition:background .15s ease}
+.sitehead .navcta:hover{background:#FF4FA2}
+.sitehead .menu{display:none;position:relative}
+.sitehead .menu summary{list-style:none;cursor:pointer;font-family:'Outfit',system-ui,sans-serif;font-weight:700;font-size:14px;color:#EAEEFF;border:1px solid #232E5C;border-radius:999px;padding:9px 15px;background:rgba(20,26,62,.65)}
+.sitehead .menu summary::-webkit-details-marker{display:none}
+.sitehead .menu[open] summary{background:#1E2652}
+.sitehead .menupanel{position:absolute;right:0;top:calc(100% + 10px);min-width:210px;padding:8px;display:flex;flex-direction:column;background:#141A3E;border:1px solid #232E5C;border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.sitehead .menupanel a{padding:12px 14px;border-radius:10px;color:#EAEEFF;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:15px}
+.sitehead .menupanel a:hover,.sitehead .menupanel a.on{background:rgba(255,255,255,.06)}
+@media (max-width:880px){.sitehead .navtrack{display:none}.sitehead .menu{display:block}}
+@media (max-width:460px){.sitehead .age-pill{display:none}.sitehead .navcta{padding:9px 13px;font-size:13px}.sitehead .shbar{padding:0 16px;gap:10px}.sitehead .brand{font-size:18px}}
