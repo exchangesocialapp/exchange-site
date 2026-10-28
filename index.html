@@ -252,6 +252,16 @@
   var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nemdxcHBueXBvZGN1eWl3YmtrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYxMzExODcsImV4cCI6MjEwMTcwNzE4N30.yoriC1jRrpF0LWzBda5sSBHWFJjw-OKi1kDScTadWIM';
   var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+  // Where did this visitor come from? Bio links use ?src=tiktok etc. (utm_source also works).
+  var SRC = (function(){
+    try {
+      var q = new URLSearchParams(location.search);
+      var v = (q.get('src') || q.get('utm_source') || '').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,32);
+      if (v) { try { sessionStorage.setItem('wl_src', v); } catch(e){} return v; }
+      try { return sessionStorage.getItem('wl_src') || 'landing'; } catch(e){ return 'landing'; }
+    } catch(e){ return 'landing'; }
+  })();
+
   var form = document.getElementById('wl');
   var note = document.getElementById('note');
   form.addEventListener('submit', async function(e){
@@ -266,7 +276,7 @@
     var btn = form.querySelector('.btn');
     btn.disabled = true;
     try {
-      var res = await sb.from('waitlist').insert({ email: email, source: 'landing' });
+      var res = await sb.from('waitlist').insert({ email: email, source: SRC });
       if (res.error && res.error.code !== '23505') { // 23505 = duplicate = already signed up, treat as success
         throw res.error;
       }
